@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "WindowsVoice.h"
+#include "VoxBridge.h"
 
 #include <sapi.h>
 #include <atlbase.h>
@@ -17,7 +17,7 @@
 
 using namespace std;
 
-namespace WindowsVoice
+namespace VoxBridge
 {
 	// --- Status reporting ---
 
@@ -65,7 +65,7 @@ namespace WindowsVoice
 
 	private:
 		mutable mutex messageMutex; // guards message
-		wstring message{ L"WindowsVoice not yet initialized!" };
+		wstring message{ L"VoxBridge not yet initialized!" };
 		atomic<speech_state_enum> state{ speech_state_enum::uninitialized };
 		atomic<ULONG> wordLength{ 0 };
 		atomic<ULONG> wordPosition{ 0 };
@@ -283,11 +283,11 @@ namespace WindowsVoice
 	{
 		if (theSpeechThread != nullptr)
 		{
-			theStatus.setMessage(L"Windows Voice thread already started.");
+			theStatus.setMessage(L"VoxBridge thread already started.");
 			return;
 		}
 		shouldTerminate = false;
-		theStatus.setMessage(L"Starting Windows Voice.");
+		theStatus.setMessage(L"Starting VoxBridge.");
 		theSpeechThread = new thread(speechThreadFunc, rate, volume);
 	}
 
@@ -316,6 +316,11 @@ namespace WindowsVoice
 	UINT32 getSpeechState()
 	{
 		return static_cast<UINT32>(theStatus.getState());
+	}
+
+	UINT32 getApiVersion()
+	{
+		return API_VERSION;
 	}
 
 	// --- Voice enumeration ---

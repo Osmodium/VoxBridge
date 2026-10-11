@@ -9,7 +9,10 @@
 #include <windows.h>
 #include <oleauto.h>
 
-namespace WindowsVoice {
+namespace VoxBridge {
+	// Bump on every breaking ABI change. Always equals the major version of the release tag (v2.x.y => 2).
+	constexpr UINT32 API_VERSION = 2;
+
 	extern "C" {
 		DLL_API void __cdecl initSpeech(int rate, int volume);
 		DLL_API void __cdecl addToSpeechQueue(const wchar_t* text);
@@ -21,8 +24,9 @@ namespace WindowsVoice {
 		DLL_API UINT32 __cdecl getWordLength();
 		DLL_API UINT32 __cdecl getWordPosition();
 		DLL_API UINT32 __cdecl getSpeechState();
+		DLL_API UINT32 __cdecl getApiVersion();
 	}
 
-	// Values must match WindowsVoiceUnity.WindowsVoiceStatus in SpeechMod/Unity/WindowsVoiceUnity.cs.
+	// Part of the ABI: consumers mirror these values in this order. See README.md, "Consumer contract".
 	enum class speech_state_enum { uninitialized, ready, speaking, terminated, error };
 }
