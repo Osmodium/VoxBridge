@@ -79,9 +79,18 @@ Check `getApiVersion()` at startup. A DLL older than API version 2 has no `getAp
 
 ## Credits
 
+Details and license terms of third-party code are in [NOTICE](NOTICE).
+
 - Based on Chad Weisshaar's [Microsoft Speech for Unity](https://blog.chadweisshaar.com/2015/07/02/microsoft-speech-for-unity/), published as "Free for all use and open source".
 - Voice naming and Natural voice detection by [gexgd0419](https://github.com/gexgd0419).
 
 ## License
 
-[MIT](LICENSE)
+Copyright (c) 2021-2026 Christian Schubert (Osmodium).
+
+Licensed under the [PolyForm Strict License 1.0.0](LICENSE).
+
+- You may use VoxBridge for noncommercial purposes.
+- You may not distribute it, change it or build new works on it.
+- For anything else, ask in an [issue](https://github.com/Osmodium/VoxBridge/issues).
+- Third-party parts keep their own terms. See [NOTICE](NOTICE).
