@@ -41,5 +41,7 @@ jobs:
           bin/x64/Release/VoxBridge.dll
           bin/x64/Release/VoxBridge.pdb
           bin/x64/Release/VoxBridge.dll.sha256
+          LICENSE
+          NOTICE
           --title "${{ github.ref_name }}"
           --generate-notes
