@@ -10,8 +10,8 @@
 #include <oleauto.h>
 
 namespace VoxBridge {
-	// Bump on every breaking ABI change. Always equals the major version of the release tag (v2.x.y => 2).
-	constexpr UINT32 API_VERSION = 2;
+	// Bump on every breaking ABI change. Always equals the major version of the release tag (v1.x.y => 1).
+	constexpr UINT32 API_VERSION = 1;
 
 	extern "C" {
 		DLL_API void __cdecl initSpeech(int rate, int volume);

@@ -13,7 +13,7 @@ Get `VoxBridge.dll` from [Releases](https://github.com/Osmodium/VoxBridge/releas
 - The C runtime is linked statically, so users need no Visual C++ redistributable.
 - Every release also has `VoxBridge.dll.sha256` and `VoxBridge.pdb`.
 
-## Consumer contract (API version 2)
+## Consumer contract (API version 1)
 
 All exports are `extern "C"`, `__cdecl`, with undecorated names. The DLL file is `VoxBridge.dll`, so the `DllImport` name is `"VoxBridge"`.
 
@@ -29,7 +29,7 @@ All exports are `extern "C"`, `__cdecl`, with undecorated names. The DLL file is
 | `getWordLength` | `UINT32 ()` | Length of the word being spoken, in characters of the input text. |
 | `getWordPosition` | `UINT32 ()` | Position of the word being spoken, in characters of the input text. |
 | `getSpeechState` | `UINT32 ()` | `0` uninitialized, `1` ready, `2` speaking, `3` terminated, `4` error. |
-| `getApiVersion` | `UINT32 ()` | API version of this DLL. Currently `2`. |
+| `getApiVersion` | `UINT32 ()` | API version of this DLL. Currently `1`. |
 
 .NET's `[return: MarshalAs(UnmanagedType.BStr)]` frees returned BSTRs for you.
 
@@ -49,7 +49,7 @@ All exports are `extern "C"`, `__cdecl`, with undecorated names. The DLL file is
 [DllImport("VoxBridge")] static extern uint getApiVersion();
 ```
 
-Check `getApiVersion()` at startup. A DLL older than API version 2 has no `getApiVersion` export and throws `EntryPointNotFoundException`.
+Check `getApiVersion()` at startup. The old `WindowsVoice.dll` has no `getApiVersion` export, so calling it there throws `EntryPointNotFoundException`.
 
 ### Moving from WindowsVoice
 
@@ -62,7 +62,6 @@ Check `getApiVersion()` at startup. A DLL older than API version 2 has no `getAp
 - Release tags are `vMAJOR.MINOR.PATCH`.
 - `MAJOR` always equals `API_VERSION` in `VoxBridge.h`.
 - Any breaking change to an export, the text encoding or the state values bumps both.
-- API version 1 was the unversioned `WindowsVoice.dll` that took `const char*` text and had no `stopSpeech`.
 
 ## Building
 

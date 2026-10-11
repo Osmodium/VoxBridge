@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory = $true)][string]$DllPath,
-    [uint32]$ExpectedApiVersion = 2
+    [uint32]$ExpectedApiVersion = 1
 )
 $ErrorActionPreference = 'Stop'
 
